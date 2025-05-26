@@ -1,3 +1,4 @@
+'use client'
 import { AppSidebar } from "@/components/app-sidebar"
 import {
   Breadcrumb,
@@ -13,8 +14,36 @@ import {
   SidebarProvider,
   SidebarTrigger,
 } from "@/components/ui/sidebar"
+import React from "react"
+
+
 
 export default function Page() {
+
+  const notes = [
+    {
+      title: "Peruanos Review",
+      description:
+        "Esta es una reseña de un restaurante peruano que ofrece una experiencia culinaria auténtica y deliciosa.",
+    },
+    {
+      title: "Italiano Review",
+      description:
+        "Esta es una reseña de un restaurante italiano que ofrece una experiencia culinaria auténtica y deliciosa.",
+    },
+    {
+      title: "Mexicano Review",
+      description:
+        "Esta es una reseña de un restaurante mexicano que ofrece una experiencia culinaria auténtica y deliciosa.",
+    },
+    {
+      title: "Chino Review",
+      description:
+        "Esta es una reseña de un restaurante chino que ofrece una experiencia culinaria auténtica y deliciosa.",
+    },
+  ]
+
+  const [currentNote, setCurrentNote] = React.useState(notes[0])
   return (
     <SidebarProvider>
       <AppSidebar />
@@ -29,23 +58,34 @@ export default function Page() {
             <BreadcrumbList>
               <BreadcrumbItem className="hidden md:block">
                 <BreadcrumbLink href="#">
-                  Building Your Application
+                  Reviews
                 </BreadcrumbLink>
               </BreadcrumbItem>
               <BreadcrumbSeparator className="hidden md:block" />
               <BreadcrumbItem>
-                <BreadcrumbPage>Data Fetching</BreadcrumbPage>
+                <BreadcrumbPage>{currentNote.title}</BreadcrumbPage>
               </BreadcrumbItem>
             </BreadcrumbList>
           </Breadcrumb>
         </header>
         <div className="flex flex-1 flex-col gap-4 p-4">
-          <div className="grid auto-rows-min gap-4 md:grid-cols-3">
-            <div className="bg-muted/50 aspect-video rounded-xl" />
-            <div className="bg-muted/50 aspect-video rounded-xl" />
-            <div className="bg-muted/50 aspect-video rounded-xl" />
+          <div className="bg-muted/50 min-h-[100vh] flex-1 rounded-xl md:min-h-min">
+            {/* current note */}
+            {
+              currentNote ? (
+                <div className="p-4">
+                  <h2 className="text-2xl font-bold">{currentNote.title}</h2>
+                  <p className="mt-2 text-gray-700">
+                    {currentNote.description}
+                  </p>
+                </div>
+              ) : (
+                <div className="p-4 text-center text-gray-500">
+                  Select a note to view its content.
+                </div>
+              )
+            }
           </div>
-          <div className="bg-muted/50 min-h-[100vh] flex-1 rounded-xl md:min-h-min" />
         </div>
       </SidebarInset>
     </SidebarProvider>
