@@ -10,9 +10,11 @@ import {
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
+  SidebarTrigger,
 } from "@/components/ui/sidebar"
 
 import { usePathname } from 'next/navigation'
+import { ModeToggle } from "./mode-toggle"
 
 // Menu items.
 const items = [
@@ -26,7 +28,7 @@ export function AppSidebar() {
   const pathname = usePathname()
   return (
     <Sidebar>
-      <SidebarContent className="bg-background">
+      <SidebarContent className="bg-background justify-between">
         <SidebarGroup>
           <SidebarGroupLabel>Application</SidebarGroupLabel>
           <SidebarGroupContent>
@@ -77,6 +79,11 @@ export function AppSidebar() {
             </SidebarMenu>
           </SidebarGroupContent>
         </SidebarGroup>
+        <div className="flex items-center justify-end gap-4 p-4">
+
+          <ModeToggle />
+          {/* <SidebarTrigger /> */}
+        </div>
       </SidebarContent>
     </Sidebar>
   )

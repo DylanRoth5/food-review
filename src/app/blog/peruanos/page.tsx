@@ -6,7 +6,7 @@ export default function Home() {
   return (
     <div className="flex rounded-lg m-2 w-full overflox  p-4 bg-muted">
       <div className="flex flex-col w-full gap-2">
-        <h1 className="text-2xl font-bold mb-4">Review del restaurante Peruanos</h1>
+        <h1 className="text-2xl font-bold mb-4">Review del restaurante Peruanos (Bien Taipa)</h1>
 
         <p className="flex rounded px-2">Fecha de visita: 26/05/2025</p>
         <p className="flex rounded px-2">Tipo de comida: Convencional</p>

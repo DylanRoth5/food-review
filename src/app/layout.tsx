@@ -7,6 +7,7 @@ import { Home } from "lucide-react";
 import { Separator } from "@/components/ui/separator";
 import { ThemeProvider } from "@/components/theme-provider"
 import { ModeToggle } from "@/components/mode-toggle";
+import MiniSideBar from "@/components/mini-sidebar";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -39,15 +40,22 @@ export default function RootLayout({
             enableSystem
             disableTransitionOnChange
           >
-        <SidebarProvider className="p-4">
+        <SidebarProvider className="p-4" >
           <AppSidebar />
           <main className="flex flex-1 width-full">
-            <div className="flex bg-background items-center flex-col gap-4">
+            {/* <div className="flex bg-background items-center flex-col gap-4">
               <SidebarTrigger />
               <ModeToggle />
               <Separator />
-              <Home size={20} />
-            </div>
+              <a href="/">
+                <Home size={20} />
+              </a>
+              <a href="/blog/peruanos">
+                BT
+              </a>
+            </div> */}
+            <SidebarTrigger />
+            {/* <MiniSideBar /> */}
             {children}
 
           </main>
