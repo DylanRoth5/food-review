@@ -19,7 +19,7 @@ export default function Home() {
           Si quieres colaborar con el blog, puedes escribir una reseña y enviarla a nuestro correo electrónico. También puedes seguirnos en nuestras redes sociales para estar al tanto de las últimas reseñas y novedades.
         </p>
         <p className="text-sm text-muted-foreground mt-4">
-          Este Blog fue creado por Dylan Roth y Tomas Weigenast, puedes encontrarnos como {<a href="https://www.instagram.com/dylan_roth5" className="text-cyan-500">@dylan_roth5</a>} y {<a href="https://www.instagram.com/tomas.weigenast" className="text-cyan-500">@tomas.weigenast</a>} en Instagram.
+          Este Blog fue creado por Dylan Roth y Tomas Weigenast, puedes encontrarnos como {<a href="https://www.instagram.com/dylan_roth5" className="text-cyan-500">@dylan_roth5</a>} y {<a href="https://www.instagram.com/tomas.weigenast" className="text-cyan-500">@tomas.weigenast</a>} en Instagram. Puedes checkear el repositorio git aqui: {<a href="https://github.com/DylanRoth5/food-review" className="text-cyan-500">food-review</a>}.
         </p>
       </div>
     </div>
