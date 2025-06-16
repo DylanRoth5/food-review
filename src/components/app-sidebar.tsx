@@ -1,71 +1,83 @@
-import * as React from "react"
+'use client'
+import { Calendar, Home, Inbox, Search, Settings } from "lucide-react"
 
-import { SearchForm } from "@/components/search-form"
-import { VersionSwitcher } from "@/components/version-switcher"
 import {
   Sidebar,
   SidebarContent,
   SidebarGroup,
   SidebarGroupContent,
   SidebarGroupLabel,
-  SidebarHeader,
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
-  SidebarRail,
 } from "@/components/ui/sidebar"
 
-// This is sample data.
-const data = {
-  versions: ["1.0.1", "1.1.0-alpha", "2.0.0-beta1"],
-  navMain: [
-    {
-      title: "Reviews",
-      url: "#",
-      items: [
-        {
-          title: "Peruanos Review",
-          url: "#",
-        },
-        {
-          title: "Italiano Review",
-          url: "#",
-        },
-      ],
-    },
-  ],
-}
+import { usePathname } from 'next/navigation'
 
-export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
+// Menu items.
+const items = [
+  {
+    title: "Peruanos",
+    url: "peruanos",
+  },
+]
+
+export function AppSidebar() {
+  const pathname = usePathname()
   return (
-    <Sidebar {...props}>
-      <SidebarHeader>
-        <VersionSwitcher
-          versions={data.versions}
-          defaultVersion={data.versions[0]}
-        />
-        <SearchForm />
-      </SidebarHeader>
-      <SidebarContent>
-        {/* We create a SidebarGroup for each parent. */}
-        {data.navMain.map((item) => (
-          <SidebarGroup key={item.title}>
-            <SidebarGroupLabel>{item.title}</SidebarGroupLabel>
-            <SidebarGroupContent>
-              <SidebarMenu>
-                {item.items.map((item) => (
-                  <SidebarMenuItem key={item.title}>
-                    <SidebarMenuButton asChild isActive={item.isActive}>
-                      <a href={item.url}>{item.title}</a>
-                    </SidebarMenuButton>
-                  </SidebarMenuItem>
-                ))}
-              </SidebarMenu>
-            </SidebarGroupContent>
-          </SidebarGroup>
-        ))}
+    <Sidebar>
+      <SidebarContent className="bg-background">
+        <SidebarGroup>
+          <SidebarGroupLabel>Application</SidebarGroupLabel>
+          <SidebarGroupContent>
+            <SidebarMenu>
+              {pathname === '/' ? (
+                <SidebarMenuItem className="bg-muted rounded-md">
+                  <SidebarMenuButton asChild>
+                    <a href={'/'}>
+                      <Home />
+                      <span>{'Home'}</span>
+                    </a>
+                  </SidebarMenuButton>
+                </SidebarMenuItem>
+              ) : (
+                <SidebarMenuItem>
+                  <SidebarMenuButton asChild>
+                    <a href={'/'}>
+                      <Home />
+                      <span>{'Home'}</span>
+                    </a>
+                  </SidebarMenuButton>
+                </SidebarMenuItem>
+              )}
+              <SidebarGroupLabel >
+                blog
+              </SidebarGroupLabel>
+              <div className="ml-4 pl-2 border-foreground border-l">
+                {items.map((item) =>
+                  pathname === '/blog/' + item.url ? (
+                    <SidebarMenuItem key={item.title} className="bg-muted rounded-md">
+                      <SidebarMenuButton asChild>
+                        <a href={'/blog/' + item.url}>
+                          <span>{item.title}</span>
+                        </a>
+                      </SidebarMenuButton>
+                    </SidebarMenuItem>
+                  ) : (
+                    <SidebarMenuItem key={item.title}>
+                      <SidebarMenuButton asChild>
+                        <a href={'/blog/' + item.url}>
+                          <span>{item.title}</span>
+                        </a>
+                      </SidebarMenuButton>
+                    </SidebarMenuItem>
+                  )
+                )}
+              </div>
+            </SidebarMenu>
+          </SidebarGroupContent>
+        </SidebarGroup>
       </SidebarContent>
-      <SidebarRail />
     </Sidebar>
   )
 }

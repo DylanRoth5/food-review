@@ -1,6 +1,12 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar"
+import { AppSidebar } from "@/components/app-sidebar"
+import { Home } from "lucide-react";
+import { Separator } from "@/components/ui/separator";
+import { ThemeProvider } from "@/components/theme-provider"
+import { ModeToggle } from "@/components/mode-toggle";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -23,11 +29,30 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        {children}
+          <ThemeProvider
+            attribute="class"
+            defaultTheme="system"
+            enableSystem
+            disableTransitionOnChange
+          >
+        <SidebarProvider className="p-4">
+          <AppSidebar />
+          <main className="flex flex-1 width-full">
+            <div className="flex bg-background items-center flex-col gap-4">
+              <SidebarTrigger />
+              <ModeToggle />
+              <Separator />
+              <Home size={20} />
+            </div>
+            {children}
+
+          </main>
+        </SidebarProvider>
+          </ThemeProvider>
       </body>
     </html>
   );
